@@ -1,0 +1,17 @@
+{
+  "name": "jira-server-automation",
+  "version": "1.0.0",
+  "description": "A simples webhooks+REST API Jira Server automation in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index"
+  },
+  "keywords": [],
+  "author": "LuizTools",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}
