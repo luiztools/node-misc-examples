@@ -1,0 +1,17 @@
+{
+  "name": "wordpress-learndash-api",
+  "version": "1.0.0",
+  "description": "A simple example of WordPress &amp; LearnDash API calls in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config ./index",
+    "dev": "npx nodemon -r dotenv/config ./index"
+  },
+  "keywords": [],
+  "author": "LuizTools",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "dotenv": "^10.0.0"
+  }
+}
