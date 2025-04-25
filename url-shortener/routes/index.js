@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const Link = require('../models/link');
 
 router.get('/:code/stats', async (req, res, next) => {

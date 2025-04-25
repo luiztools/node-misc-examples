@@ -6,9 +6,9 @@
 
   await database.sync();
 
-  var app = require('../app');
-  var debug = require('debug')('url-shortener:server');
-  var http = require('http');
+  const app = require('../app');
+  const debug = require('debug')('url-shortener:server');
+  const http = require('http');
 
   app.set('port', process.env.PORT || '3000');
 
@@ -23,7 +23,7 @@
       throw error;
     }
 
-    var bind = typeof port === 'string'
+    const bind = typeof port === 'string'
       ? 'Pipe ' + port
       : 'Port ' + port;
 
@@ -43,8 +43,8 @@
   }
 
   function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === 'string'
+    const addr = server.address();
+    const bind = typeof addr === 'string'
       ? 'pipe ' + addr
       : 'port ' + addr.port;
     debug('Listening on ' + bind);
