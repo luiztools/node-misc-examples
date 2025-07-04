@@ -1,0 +1,18 @@
+{
+  "name": "jwt",
+  "version": "1.0.0",
+  "description": "Exemplo de Web API Node.js com autenticação via JWT",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index"
+  },
+  "keywords": [],
+  "author": "LuizTools",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv-safe": "^9.1.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^11.1.0"
+  }
+}
