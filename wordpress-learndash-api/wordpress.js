@@ -18,7 +18,29 @@ async function addUserToCourse(userIds, courseId) {
     return response.data;
 }
 
+async function getTopics(courseId) {
+    const topics = [];
+    let response;
+    let page = 1;
+
+    do {
+        response = await axios.get(`${baseUrl}/ldlms/v1/sfwd-topic?course=${courseId}&per_page=100&page=${page}`, { auth });
+        topics.push(...response.data);
+        page++;
+    }
+    while (response.data.length === 100);
+
+    return topics;
+}
+
+async function updateTopic(topicId, payload){
+    const response = await axios.post(`${baseUrl}/ldlms/v1/sfwd-topic/${topicId}`, payload, { auth });
+    return response.data;
+}
+
 module.exports = {
    addUser,
-   addUserToCourse
+   addUserToCourse,
+   getTopics,
+   updateTopic
 }
