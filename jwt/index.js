@@ -5,52 +5,56 @@ const jwt = require('jsonwebtoken');
 const express = require('express');
 const app = express();
 
-const blacklist = [];
-
 app.use(express.json());
 
 app.get('/', (req, res, next) => {
   res.json({ message: "Tudo ok por aqui!" });
 })
 
-app.get('/clientes', verifyJWT, (req, res, next) => {
+app.get('/clientes', verifyJWT, (req, res) => {
   console.log("Retornou todos clientes!");
   res.json([{ id: 1, nome: 'luiz' }]);
 })
 
 function verifyJWT(req, res, next) {
-  var token = req.headers['authorization'];
-  if (!token) return res.status(401).json({ auth: false, message: 'No token provided.' });
+  let token = req.headers['authorization'];
+  if (!token) return res.status(401).json({ message: 'No token provided.' });
+  
+  token = req.headers['authorization'].replace("Bearer ", "");
+  if (blacklist[token]) return res.status(403).json({ message: 'Invalid token.' });
 
-  const index = blacklist.findIndex(item => item === token);
-  if(index !== -1) return res.status(401).end();
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded) return res.status(403).json({ message: 'Invalid token.' });
 
-  jwt.verify(token, process.env.SECRET, function (err, decoded) {
-    if (err) return res.status(401).json({ auth: false, message: 'Failed to authenticate token.' });
-
-    // se tudo estiver ok, salva no request para uso posterior
-    req.userId = decoded.id;
-    next();
-  });
+    res.locals.token = decoded;
+    return next();
+  } catch (err) {
+    return res.status(403).json({ message: err.message });
+  }
 }
 
 app.post('/login', (req, res, next) => {
   //esse teste abaixo deve ser feito no seu banco de dados
-  if (req.body.user === 'luiz' && req.body.pwd === '123') {
+  if (req.body.user === 'luiz' && req.body.password === '123') {
     //auth ok
     const userId = 1; //esse id viria do banco de dados
-    const token = jwt.sign({ userId }, process.env.SECRET, {
-      expiresIn: 300 // expires in 5min
+    const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+      expiresIn: parseInt(process.env.JWT_EXPIRES)
     });
-    return res.json({ auth: true, token: token });
+    return res.json({ token: token });
   }
 
-  res.status(401).json({ message: 'Login inválido!' });
+  res.status(401).json({ message: 'Invalid credentials!' });
 })
 
-app.post('/logout', function (req, res) {
-  blacklist.push(req.headers['authorization']);
-  res.json({ auth: false, token: null });
+const blacklist = {};
+
+app.post('/logout', verifyJWT, (req, res) => {
+  const token = req.headers['authorization'].replace("Bearer ", "");
+  blacklist[token] = true;
+  setTimeout(() => delete blacklist[token], parseInt(process.env.JWT_EXPIRES) * 1000);
+  res.json({ token: null });
 })
 
 app.listen(3000, () => console.log("Servidor escutando na porta 3000..."));
