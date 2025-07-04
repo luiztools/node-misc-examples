@@ -13,7 +13,7 @@ Node.js webapi example with JWT auth + RSA cryptography.
 
 ## More
 
-Para o tutorial completo, acesse: https://www.luiztools.com.br/post/autenticacao-json-web-token-jwt-em-node-js-2/
+Para o tutorial completo, acesse: https://www.luiztools.com.br/post/autenticacao-json-web-token-jwt-em-nodejs-2/
 
 Para cursos, acesse: https://www.luiztools.com.br/meus-cursos
 
