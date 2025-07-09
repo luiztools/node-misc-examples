@@ -1,0 +1,16 @@
+{
+  "name": "openai-wrapper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "keywords": [],
+  "author": "LuizTools",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.1.0",
+    "openai": "^5.8.3"
+  }
+}
