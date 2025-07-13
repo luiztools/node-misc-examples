@@ -1,0 +1,23 @@
+{
+  "name": "aiagent-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "server": "node server",
+    "start": "node index"
+  },
+  "keywords": [],
+  "author": "LuizTools",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@openai/agents": "^0.0.11",
+    "axios": "^1.10.0",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0",
+    "openai": "^5.9.0",
+    "zod": "^3.25.67"
+  }
+}
