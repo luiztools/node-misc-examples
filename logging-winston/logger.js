@@ -39,7 +39,7 @@ const logger = winston.createLogger({
     transports: [
         new WinstonRotatingFile({
             filename: 'error.log',
-            rfsOptions: { size: "10M" }
+            rfsOptions: { size: "10M", maxFiles: 1, path: "logs" }
         })
     ]
 });
