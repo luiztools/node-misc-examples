@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "binance": {
+      "command": "node",
+      "args": [
+        "/Users/luiztools/NodeProjects/node-misc-examples/mcp-server-example/dist/index.js"
+      ]
+    }
+  }
+}
