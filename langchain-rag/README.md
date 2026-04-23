@@ -14,7 +14,7 @@ LangChain + Node.js + OpenAI RAG example.
 
 ## More
 
-Para o tutorial completo, acesse (em breve): https://www.luiztools.com.br/post/introducao-langchain-nodejs-openai/
+Para o tutorial completo, acesse (em breve): https://www.luiztools.com.br/post/introducao-a-rag-com-langchain-node-js-e-openai
 
 Para cursos, acesse: https://www.luiztools.com.br/meus-cursos
 
