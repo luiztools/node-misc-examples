@@ -94,7 +94,6 @@ router.post("/login", (req, res, next) => {
  *         description: Unauthorized
  */
 router.get("/clientes", verifyJWT, (req, res) => {
-  console.log("Retornou todos clientes!");
   res.json([{ id: 1, nome: "luiz" }]);
 })
 
